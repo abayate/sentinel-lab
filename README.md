@@ -9,6 +9,24 @@ and reproducible with two commands.
 > published to the internet. The intentionally weak credentials exist only to make
 > attacks demonstrable inside the lab. Do not reuse any of this on real systems.
 
+## Impact at a glance
+
+| | Result |
+|---|---|
+| 🎯 **Detection coverage** | **5 of 6** MITRE ATT&CK techniques in the attack chain detected |
+| 🧪 **Detection-as-code** | **13 unit tests**, run in CI on every push (true- **and** false-positive tests per rule) |
+| ⚡ **Attack impact shown** | Attacker goes from brute-forcing a weak password to **full `root` in under a minute** |
+| 🛡️ **Hardening proven** | After CIS-mapped fixes, the same brute force is **rejected at the protocol level** |
+| 🧩 **Built from scratch** | Custom Python detection engine + YAML rules — not an off-the-shelf SIEM |
+
+**Techniques detected:** SSH brute force (T1110.001) · valid-account login (T1078) ·
+sudo privilege escalation (T1548.003) · cron persistence (T1053.003) · web path
+scanning (T1595.003).
+
+See the one-command demo in [Try it end-to-end](#try-it-end-to-end), the full rebuild
+in [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md), and the coverage map in
+[`docs/ATTACK_COVERAGE.md`](docs/ATTACK_COVERAGE.md).
+
 ## Architecture
 
 ```
@@ -53,6 +71,13 @@ docker compose down            # tear the lab down
 for a full step-by-step rebuild and `docs/ATTACK_COVERAGE.md` for the coverage map.
 
 ## Try it end-to-end
+
+**One command** (rebuilds the lab, attacks it, detects, tests, hardens, re-attacks):
+```bash
+bash scripts/demo.sh
+```
+
+Or run the pipeline stage by stage:
 ```bash
 cd lab && docker compose up -d --build        # 1. start the lab
 docker exec attacker bash /attacks/run_all.sh victim   # 2. run the attacks

@@ -1,2 +1,0 @@
-* * * * * /bin/bash -c "echo beacon $(date) >> /tmp/.beacon"
-* * * * * /bin/bash -c "echo beacon $(date) >> /tmp/.beacon"
