@@ -6,3 +6,10 @@
 2026-10-21T19:46:45.088538+00:00 victim rsyslogd: [origin software="rsyslogd" swVersion="8.2302.0" x-pid="8" x-info="https://www.rsyslog.com"] start
 2026-10-21T19:47:02.268259+00:00 victim crontab[68]: (alice) LIST (alice)
 2026-10-21T19:47:02.273009+00:00 victim crontab[67]: (alice) REPLACE (alice)
+2026-10-21T19:47:03.847780+00:00 victim crontab[99]: (root) LIST (alice)
+2026-10-21T19:48:01.104026+00:00 victim CRON[106]: (alice) CMD (/bin/bash -c "echo beacon $(date) >> /tmp/.beacon")
+2026-10-21T19:49:01.113218+00:00 victim CRON[110]: (alice) CMD (/bin/bash -c "echo beacon $(date) >> /tmp/.beacon")
+2026-10-21T19:50:01.123391+00:00 victim CRON[114]: (alice) CMD (/bin/bash -c "echo beacon $(date) >> /tmp/.beacon")
+2026-10-21T19:51:01.132186+00:00 victim CRON[129]: (alice) CMD (/bin/bash -c "echo beacon $(date) >> /tmp/.beacon")
+2026-10-21T19:51:03.699113+00:00 victim crontab[147]: (alice) LIST (alice)
+2026-10-21T19:51:03.701495+00:00 victim crontab[146]: (alice) REPLACE (alice)
