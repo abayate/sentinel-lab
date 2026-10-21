@@ -9,6 +9,9 @@ services:
     hostname: victim
     networks:
       - labnet
+    volumes:
+      # Mount the hardening script so we can apply Phase 5 fixes without a rebuild.
+      - ../scripts/harden.sh:/harden.sh:ro
     # No ports published to your laptop on purpose: attacks happen INSIDE the lab
     # network only, so nothing is exposed to the outside world.
 

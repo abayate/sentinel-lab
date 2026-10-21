@@ -27,6 +27,12 @@ RUN mkdir -p /run/sshd
 RUN useradd -m -s /bin/bash alice \
     && echo 'alice:password123' | chpasswd
 
+# DELIBERATE MISCONFIGURATION (the vulnerability the hardening phase fixes):
+# alice is granted full sudo. Combined with a weak password, cracking alice's
+# login hands the attacker instant root. Phase 5 hardening removes this line.
+RUN echo 'alice ALL=(ALL) ALL' > /etc/sudoers.d/alice \
+    && chmod 0440 /etc/sudoers.d/alice
+
 # Allow password SSH logins (so brute force is demonstrable) and log verbosely.
 RUN sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config \
     && sed -i 's/^#\?LogLevel.*/LogLevel VERBOSE/' /etc/ssh/sshd_config

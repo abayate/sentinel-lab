@@ -1,0 +1,12 @@
+id: LAB-003
+title: Privilege Escalation via sudo
+description: >
+  A user ran a command as root through sudo. In this lab, alice should never need
+  root; a sudo-to-root event by alice indicates privilege escalation after account
+  compromise.
+level: high
+mitre:
+  - T1548.003          # Abuse Elevation Control Mechanism: Sudo and Sudo Caching
+source: auth
+type: match
+pattern: 'sudo:\s+(?P<user>\S+)\s+:.*USER=root\s+;\s+COMMAND=(?P<command>.+)$'

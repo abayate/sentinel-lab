@@ -1,0 +1,12 @@
+id: LAB-002
+title: Successful SSH Password Login
+description: >
+  A successful SSH login with a password. On its own this is normal, but when it
+  follows a LAB-001 brute-force alert from the same IP it means the guessing worked
+  — valid-account access (correlate the two alerts by src_ip).
+level: medium
+mitre:
+  - T1078              # Valid Accounts
+source: auth
+type: match
+pattern: 'Accepted password for (?P<user>\S+) from (?P<src_ip>\d+\.\d+\.\d+\.\d+)'

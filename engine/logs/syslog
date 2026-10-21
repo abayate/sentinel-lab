@@ -1,0 +1,8 @@
+2026-10-21T19:46:44.098501+00:00 victim cron[12]: (CRON) INFO (pidfile fd = 3)
+2026-10-21T19:46:44.098813+00:00 victim cron[14]: (CRON) STARTUP (fork ok)
+2026-10-21T19:46:44.099433+00:00 victim cron[14]: (CRON) INFO (Running @reboot jobs)
+2026-10-21T19:46:45.088510+00:00 victim rsyslogd: imklog: cannot open kernel log (/proc/kmsg): Operation not permitted.
+2026-10-21T19:46:45.088534+00:00 victim rsyslogd: activation of module imklog failed [v8.2302.0 try https://www.rsyslog.com/e/2145 ]
+2026-10-21T19:46:45.088538+00:00 victim rsyslogd: [origin software="rsyslogd" swVersion="8.2302.0" x-pid="8" x-info="https://www.rsyslog.com"] start
+2026-10-21T19:47:02.268259+00:00 victim crontab[68]: (alice) LIST (alice)
+2026-10-21T19:47:02.273009+00:00 victim crontab[67]: (alice) REPLACE (alice)

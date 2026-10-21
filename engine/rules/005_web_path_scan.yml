@@ -1,0 +1,14 @@
+id: LAB-005
+title: Web Path / Content Scanning
+description: >
+  Five or more HTTP 404s from one source IP within a minute — the signature of an
+  attacker probing for hidden admin pages, config files, or uploaded web shells.
+level: medium
+mitre:
+  - T1595.003          # Active Scanning: Wordlist Scanning
+source: nginx
+type: threshold
+pattern: '(?P<src_ip>\d+\.\d+\.\d+\.\d+)\s+-\s+-\s+\[[^\]]+\]\s+"(?:GET|POST|HEAD)\s+(?P<url>\S+)[^"]*"\s+404'
+group_by: src_ip
+threshold: 5
+window_seconds: 60

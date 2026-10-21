@@ -1,0 +1,11 @@
+id: LAB-004
+title: Cron Persistence Installed
+description: >
+  A user's crontab was replaced (crontab REPLACE). Attackers add cron jobs so their
+  code re-runs on a schedule and survives reboots — a common persistence technique.
+level: high
+mitre:
+  - T1053.003          # Scheduled Task/Job: Cron
+source: syslog
+type: match
+pattern: 'crontab\[\d+\]:\s+\((?P<user>\S+)\)\s+REPLACE'

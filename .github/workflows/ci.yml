@@ -1,0 +1,32 @@
+# Detection-as-code CI: every push and pull request runs the rule test suite.
+# A rule change that breaks a detection (or adds a false positive) fails the build,
+# the same way application unit tests gate a normal software change.
+name: detection-ci
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  test-detections:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r engine/requirements.txt
+
+      - name: Run detection rule tests
+        working-directory: engine
+        run: pytest -v
+
+      - name: Smoke-test the engine against the sample logs
+        working-directory: engine
+        run: python detect.py --rules rules --logs logs || true
