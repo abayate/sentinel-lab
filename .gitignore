@@ -11,3 +11,6 @@ engine/output/
 # OS
 .DS_Store
 Thumbs.db
+
+# Generated dashboard (rebuild with: python3 engine/report.py)
+engine/report.html

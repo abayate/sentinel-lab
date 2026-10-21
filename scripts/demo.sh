@@ -33,6 +33,10 @@ echo "  --- brute force against hardened host: ---"
 docker exec attacker hydra -l alice -P /tmp/wordlist.txt -t 4 -I ssh://victim 2>&1 \
   | grep -iE 'does not support|valid password' | sed 's/^/  /'
 
+line "BONUS  Build the visual SOC dashboard from these alerts"
+( cd engine && "$PY" report.py )
+
 line "DEMO COMPLETE"
-echo "Alerts saved to: engine/output/alerts.json"
-echo "Read next: docs/REPLICATION_GUIDE.md and docs/INTERVIEW_NOTES.md"
+echo "Alerts saved to:    engine/output/alerts.json"
+echo "Visual dashboard:   engine/report.html  (open it in your browser)"
+echo "Read next:          docs/REPLICATION_GUIDE.md and docs/INTERVIEW_NOTES.md"

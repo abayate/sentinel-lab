@@ -37,6 +37,24 @@ See the one-command demo in [Try it end-to-end](#try-it-end-to-end), the full re
 in [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md), and the coverage map in
 [`docs/ATTACK_COVERAGE.md`](docs/ATTACK_COVERAGE.md).
 
+## See it in action
+
+Two ways to *watch* the security events, not just trust a script:
+
+```bash
+bash scripts/watch_attack.sh    # LIVE: stream the victim's auth.log as the brute
+                                #   force runs — 'Failed password' in red, then the crack
+cd engine && python3 report.py  # build the visual SOC dashboard from the real alerts
+                                #   -> open engine/report.html in a browser
+```
+
+The dashboard (`engine/report.html`) shows stat cards, alerts-per-rule, the MITRE
+ATT&CK techniques detected, and a filterable/searchable alert feed — generated
+entirely from the engine's own `output/alerts.json`.
+
+<!-- Add a screenshot: save it as docs/dashboard.png and this image will render here -->
+![SOC dashboard](docs/dashboard.png)
+
 ## Architecture
 
 ```
