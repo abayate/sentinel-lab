@@ -9,6 +9,16 @@ and reproducible with two commands.
 > published to the internet. The intentionally weak credentials exist only to make
 > attacks demonstrable inside the lab. Do not reuse any of this on real systems.
 
+## Start here (how to read this repo)
+
+New to the project? Follow this order:
+1. **Run it:** `bash scripts/demo.sh` — watch the 6 steps (lab → attack → detect → test → harden → attack fails).
+2. **Understand it:** this README's [Architecture](#architecture) + [Repository layout](#repository-layout).
+3. **Rebuild it from scratch:** [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md) — every command, expected output, and gotcha.
+4. **The detection logic:** [`engine/detect.py`](engine/detect.py) + a rule like [`engine/rules/001_ssh_bruteforce.yml`](engine/rules/001_ssh_bruteforce.yml).
+5. **The security write-ups:** [`docs/incident_reports/`](docs/incident_reports) and [`docs/ATTACK_COVERAGE.md`](docs/ATTACK_COVERAGE.md).
+6. **Explain it (resume/interview):** [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md) and [`docs/RESUME.md`](docs/RESUME.md).
+
 ## Impact at a glance
 
 | | Result |
