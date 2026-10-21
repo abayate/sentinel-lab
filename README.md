@@ -5,6 +5,12 @@ realistic attacks against them, and detects those attacks with a custom Python
 detection engine driven by Sigma-style YAML rules. Everything is defined as code
 and reproducible with two commands.
 
+> **New here? Start with [`docs/HOW_IT_WORKS.md`](docs/HOW_IT_WORKS.md)** — the whole
+> project explained in one page in plain language (diary → robot → wall).
+>
+> **In one sentence:** this project reads a server's logs and finds the attacks hidden
+> in them — like a robot that reads a house's diary and points at the burglar pages.
+
 > **Scope & ethics:** every host runs on a private Docker network with nothing
 > published to the internet. The intentionally weak credentials exist only to make
 > attacks demonstrable inside the lab. Do not reuse any of this on real systems.
@@ -12,6 +18,7 @@ and reproducible with two commands.
 ## Start here (how to read this repo)
 
 New to the project? Follow this order:
+0. **Understand it in plain language:** [`docs/HOW_IT_WORKS.md`](docs/HOW_IT_WORKS.md) (1 page — read this first).
 1. **Run it:** `bash scripts/demo.sh` — watch the 6 steps (lab → attack → detect → test → harden → attack fails).
 2. **Understand it:** this README's [Architecture](#architecture) + [Repository layout](#repository-layout).
 3. **Rebuild it from scratch:** [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md) — every command, expected output, and gotcha.
