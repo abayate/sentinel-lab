@@ -1,0 +1,8 @@
+# Shell scripts and container entrypoints MUST keep Unix (LF) line endings,
+# otherwise they fail with "bad interpreter" inside Linux containers.
+*.sh    text eol=lf
+entrypoint.sh text eol=lf
+Dockerfile text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.py    text eol=lf
