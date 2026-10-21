@@ -1,0 +1,32 @@
+# Docker Compose defines our whole lab in one file: two hosts on a private network.
+# "docker compose up" builds and starts everything; "docker compose down" tears it down.
+# This is Infrastructure as Code — the entire environment is reproducible from this file.
+
+services:
+  victim:
+    build: ./victim          # build from lab/victim/Dockerfile
+    container_name: victim
+    hostname: victim
+    networks:
+      - labnet
+    # No ports published to your laptop on purpose: attacks happen INSIDE the lab
+    # network only, so nothing is exposed to the outside world.
+
+  attacker:
+    build: ./attacker
+    container_name: attacker
+    hostname: attacker
+    networks:
+      - labnet
+    volumes:
+      # Mount our attack scripts into the container so we can edit them on the host
+      # and run them immediately with no rebuild.
+      - ../scripts/attacks:/attacks:ro
+    depends_on:
+      - victim
+
+# A dedicated bridge network. Containers reach each other by name: "victim", "attacker".
+networks:
+  labnet:
+    name: labnet
+    driver: bridge

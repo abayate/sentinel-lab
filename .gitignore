@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Engine output
+engine/output/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
