@@ -95,7 +95,7 @@ separate detection content from the engine.
 ## Phase 4 — Detection-as-code (tests + CI)
 
 ### What I built
-13 pytest tests: every rule has a true-positive and a false-positive test, plus
+15 pytest tests: every rule has a true-positive and a false-positive test, plus
 timestamp-parsing and rule-loading guards. GitHub Actions runs them on every push.
 
 ### Why it matters (this is the differentiator)

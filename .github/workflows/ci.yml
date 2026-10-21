@@ -30,3 +30,7 @@ jobs:
       - name: Smoke-test the engine against the sample logs
         working-directory: engine
         run: python detect.py --rules rules --logs logs || true
+
+      - name: Score detections against the labeled dataset
+        working-directory: engine
+        run: python evaluate.py

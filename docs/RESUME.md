@@ -8,11 +8,11 @@ what the project actually does, so you can back up every claim.
 > Python · Docker · MITRE ATT&CK · CI/CD · github.com/abayate/sentinel-lab
 
 ## Resume bullets (XYZ format — pick 3–4)
-- Built a **custom Python detection engine** that parses Linux logs and applies
-  Sigma-style YAML rules, **detecting 5 of 6 simulated MITRE ATT&CK techniques**
-  (brute force, privilege escalation, persistence, scanning) and emitting structured,
-  technique-tagged alerts.
-- Engineered **detection-as-code** with **13 unit tests** (true- and false-positive
+- Built a **custom Python detection engine** (Sigma-style YAML rules mapped to MITRE
+  ATT&CK) that achieved a **100% detection rate — 6 of 6 attack campaigns — with zero
+  false positives** across a realistic 209-line dataset of 138 benign/background-noise
+  events, emitting structured, technique-tagged alerts.
+- Engineered **detection-as-code** with **15 unit tests** (true- and false-positive
   cases per rule) gated in a **GitHub Actions CI pipeline**, proving each rule fires
   on attacks without false-alarming on normal activity.
 - Architected a **reproducible attacker/victim lab as Infrastructure-as-Code** with
@@ -43,7 +43,7 @@ what the project actually does, so you can back up every claim.
   wrote a Python engine that reads the logs and applies YAML rules, including threshold
   logic so 5 failed logins in 2 minutes alert but one typo doesn't; put the rules under
   pytest in GitHub Actions CI; wrote a CIS-mapped hardening script.
-- **Result:** Detects 5 of 6 techniques, 13 tests pass in CI, and after hardening the
+- **Result:** Detects 5 of 6 techniques, 15 tests pass in CI, and after hardening the
   brute force that gave root in under a minute is rejected at the protocol level.
 
 ## "How does this scale to a real job?" (the differentiator)

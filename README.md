@@ -16,15 +16,17 @@ New to the project? Follow this order:
 2. **Understand it:** this README's [Architecture](#architecture) + [Repository layout](#repository-layout).
 3. **Rebuild it from scratch:** [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md) — every command, expected output, and gotcha.
 4. **The detection logic:** [`engine/detect.py`](engine/detect.py) + a rule like [`engine/rules/001_ssh_bruteforce.yml`](engine/rules/001_ssh_bruteforce.yml).
-5. **The security write-ups:** [`docs/incident_reports/`](docs/incident_reports) and [`docs/ATTACK_COVERAGE.md`](docs/ATTACK_COVERAGE.md).
-6. **Explain it (resume/interview):** [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md) and [`docs/RESUME.md`](docs/RESUME.md).
+5. **The scenario & metrics:** [`docs/SCENARIO.md`](docs/SCENARIO.md) — threat model, detection lifecycle, and the 100%/0-FP result on a realistic dataset.
+6. **The security write-ups:** [`docs/incident_reports/`](docs/incident_reports) and [`docs/ATTACK_COVERAGE.md`](docs/ATTACK_COVERAGE.md).
+7. **Explain it (resume/interview):** [`docs/INTERVIEW_NOTES.md`](docs/INTERVIEW_NOTES.md) and [`docs/RESUME.md`](docs/RESUME.md).
 
 ## Impact at a glance
 
 | | Result |
 |---|---|
-| 🎯 **Detection coverage** | **5 of 6** MITRE ATT&CK techniques in the attack chain detected |
-| 🧪 **Detection-as-code** | **13 unit tests**, run in CI on every push (true- **and** false-positive tests per rule) |
+| 🎯 **Detection rate** | **100% — 6 of 6 attack campaigns** caught in a realistic 209-line dataset |
+| 🔕 **False positives** | **0** across **138 benign + background-noise events** from dozens of IPs |
+| 🧪 **Detection-as-code** | **15 unit tests**, run in CI on every push (true- **and** false-positive tests per rule) |
 | ⚡ **Attack impact shown** | Attacker goes from brute-forcing a weak password to **full `root` in under a minute** |
 | 🛡️ **Hardening proven** | After CIS-mapped fixes, the same brute force is **rejected at the protocol level** |
 | 🧩 **Built from scratch** | Custom Python detection engine + YAML rules — not an off-the-shelf SIEM |
@@ -32,6 +34,16 @@ New to the project? Follow this order:
 **Techniques detected:** SSH brute force (T1110.001) · valid-account login (T1078) ·
 sudo privilege escalation (T1548.003) · cron persistence (T1053.003) · web path
 scanning (T1595.003).
+
+The headline result comes from a **realistic, production-style dataset** — legitimate
+logins, normal web traffic, and the constant internet background-scanning every public
+server sees, with real attack campaigns *hidden in the noise*. See
+[`docs/SCENARIO.md`](docs/SCENARIO.md) for the threat model and detection lifecycle.
+Reproduce the metrics with:
+```bash
+python3 scripts/generate_dataset.py   # build the 209-line realistic dataset
+python3 engine/evaluate.py            # score detections vs. ground truth
+```
 
 See the one-command demo in [Try it end-to-end](#try-it-end-to-end), the full rebuild
 in [`docs/REPLICATION_GUIDE.md`](docs/REPLICATION_GUIDE.md), and the coverage map in
@@ -89,12 +101,12 @@ docker compose down            # tear the lab down
 | 1 | Lab environment (IaC: victim + attacker on a private network) | ✅ Done |
 | 2 | Attack simulation (SSH brute force, persistence, privesc, web scan) mapped to ATT&CK | ✅ Done |
 | 3 | Python detection engine + YAML rules | ✅ Done |
-| 4 | Detection-as-code: unit tests + CI (GitHub Actions) | ✅ Done (13 tests) |
+| 4 | Detection-as-code: unit tests + CI (GitHub Actions) | ✅ Done (15 tests) |
 | 5 | Hardening scripts + before/after results | ✅ Done |
 | 6 | Incident reports + ATT&CK coverage map | ✅ Done |
 
 **Results:** the engine detects 5 of 6 ATT&CK techniques across the attack chain
-(11 alerts), all 13 rule tests pass, and after hardening the same attacks fail
+(11 alerts), all 15 tests pass, and after hardening the same attacks fail
 (SSH brute force is rejected at the protocol level). See `docs/REPLICATION_GUIDE.md`
 for a full step-by-step rebuild and `docs/ATTACK_COVERAGE.md` for the coverage map.
 

@@ -197,7 +197,7 @@ Wrote 11 alert(s) to output/alerts.json
 
 `engine/tests/test_rules.py` tests every rule two ways: it **fires** on a malicious
 sample and does **not** fire on benign activity (no false positives). Plus timestamp
-parsing and "all rules load" guards. 13 tests total.
+parsing and "all rules load" guards. 15 tests total.
 
 ```bash
 cd engine && ~/sentinel-venv/bin/python -m pytest -q

@@ -1,0 +1,52 @@
+{
+  "generated": "2026-10-21T21:08:53+00:00",
+  "note": "IPs are RFC 5737 documentation ranges; dataset is synthetic but modeled on real patterns.",
+  "benign_ssh_sessions": 14,
+  "internet_noise_failed_logins": 45,
+  "benign_web_requests": 70,
+  "web_noise_404s": 9,
+  "attacks": [
+    {
+      "id": "A",
+      "type": "SSH brute force (root), failed",
+      "src_ip": "203.0.113.42",
+      "rule": "LAB-001",
+      "mitre": "T1110.001"
+    },
+    {
+      "id": "B1",
+      "type": "SSH brute force (alice), succeeded",
+      "src_ip": "203.0.113.77",
+      "rule": "LAB-001",
+      "mitre": "T1110.001"
+    },
+    {
+      "id": "B2",
+      "type": "Valid-account login after brute force",
+      "src_ip": "203.0.113.77",
+      "rule": "LAB-002",
+      "mitre": "T1078"
+    },
+    {
+      "id": "B3",
+      "type": "Privilege escalation via sudo",
+      "src_ip": "203.0.113.77",
+      "rule": "LAB-003",
+      "mitre": "T1548.003"
+    },
+    {
+      "id": "B4",
+      "type": "Cron persistence installed",
+      "src_ip": "203.0.113.77",
+      "rule": "LAB-004",
+      "mitre": "T1053.003"
+    },
+    {
+      "id": "C",
+      "type": "Web path scanning",
+      "src_ip": "203.0.113.133",
+      "rule": "LAB-005",
+      "mitre": "T1595.003"
+    }
+  ]
+}
